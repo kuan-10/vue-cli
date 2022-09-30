@@ -4,7 +4,6 @@ const route=import.meta.glob('../layouts/*.vue')
 const childRoutes=import.meta.glob('../views/**/*.vue')
 Object.entries(route).forEach(([key,module])=>{
     const layoutRoute=getRoute(key,module)
-    console.log(layoutRoute)
     layoutRoute.children= getChildRoute(layoutRoute)
     layoutRoutes.push(layoutRoute)
 })

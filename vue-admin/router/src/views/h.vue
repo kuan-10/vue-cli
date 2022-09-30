@@ -1,7 +1,6 @@
 <template>
     <div>
-      admin...
-      <router-view />
+clancilabn
     </div>
 </template>
 
