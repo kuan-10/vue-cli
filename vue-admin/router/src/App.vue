@@ -1,7 +1,11 @@
+
 <script setup lang="ts">
+  import helper from '@/types/helper'
+  import  userApi from '@/api/user'
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-console.log(import.meta.env)
+const response=await userApi.login()
+console.log(response)
 </script>
 
 <template>
