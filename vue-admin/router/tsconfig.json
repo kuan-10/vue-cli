@@ -6,6 +6,7 @@
     "moduleResolution": "Node",
     "strict": true,
     "jsx": "preserve",
+    "baseUrl": ".",
     "paths":{
       "@/*":["./src/*"]
     },
@@ -16,6 +17,6 @@
     "lib": ["ESNext", "DOM"],
     "skipLibCheck": true
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue","vite.config.ts"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue","vite.config.ts", "vite/util.ts","vite/**/*.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
