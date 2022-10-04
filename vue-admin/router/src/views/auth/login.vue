@@ -3,12 +3,12 @@
     <div class=" container  bg-cyan-100">
         <div class="bg-white">
             <h2 class="text-xl my-10 font-semibold text-center">会员登陆</h2>
-           <inputText/>
-           <inputPassword/>
+           <inputText v-model="form.account"/>
+           <inputPassword v-model="form.password"/>
            <loginButton/>
            <div class="space-x-4 mx-10 my-5 text-gray-500">
         <a href="">网站首页</a>
-        <a href="">会员注册</a>
+            <a href="">会员注册</a>
         <a href="">找回密码</a>
         <a href="">客服中心</a>
     </div>
@@ -22,9 +22,18 @@
 import inputText from '@/components/form/input.vue'
 import inputPassword from '@/components/form/password.vue'
 import loginButton from '@/components/form/loginButton.vue'
+import { reactive } from 'vue';
+interface form{
+    account:string,
+    password:number|string
+}
+const form=reactive<form>({
+    account:"123",
+    password:"",
+})
 </script>
 
-<style lang="scss" scoped>
+<style lang="postcss" scoped>
 body{
 margin:0px;
 padding:0px;
