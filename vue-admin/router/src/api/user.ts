@@ -12,9 +12,11 @@ interface loginInterface{
     url:"/info",
    })
 }
- function login() {
-    return http.request<responseResult<loginInterface>>({
+ function login(data:any) {
+    return http.request<loginInterface>({
      url:"login",
+     method:'post',
+     data
     })
  }
  export default{info,login}

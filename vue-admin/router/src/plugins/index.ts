@@ -8,7 +8,7 @@ export function setupPlugins(app:App){
 function autoRegisterComponent(app:App){
   const modules=import.meta.glob('../components/form/*.vue')//获取component文件夹中的组件
   Object.entries(modules).forEach(([key,value])=>{
-    console.log(key,value)
+
     key=key.replace(/..\/components\/form\/|.vue/ig,'')//获取组件名字
     app.component(key,value)
   })

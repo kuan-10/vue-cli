@@ -28,7 +28,7 @@ export default [
   },
   {
     url: '/api/login',
-    method: 'get',
+    method: 'post',
     timeout: 2000,
     response: ()=>{
      return {
