@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input type="text" class="inputStyle" placeholder="请输入用户名" :value="props.modelValue" @input="$emit('update:modelValue',($event)=>event.target.value)"/>
+        <input type="text" class="inputStyle" placeholder="请输入用户名" :value="props.modelValue" />
     </div>
 </template>
 
