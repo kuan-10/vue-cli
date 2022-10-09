@@ -10,9 +10,9 @@ export default {
     localStorage.setItem(key,JSON.stringify(data))
     },
     get(key:string):IData|null{
-        const item=localStorage.getItem(key)
+        const item=localStorage.getItem(key)//从本地进行获取
  if(item){
-    const data=JSON.parse(item);
+    const data=JSON.parse(item);//对他进行转化
     const expire=data.expire;
     if(expire<new Date().getTime()){
         localStorage.removeItem(key)

@@ -17,6 +17,7 @@ import v from '@/plugins/validate/index'
 import user from 'mock/user';
 import userApi from '@/api/user'
 import store from '@/util/store'
+import router from '@/router';
 v.defineRule('required',required)
 v.defineRule('email',email)
 const {handleSubmit,errors}=v.useForm({
@@ -40,7 +41,8 @@ const onSubmit=  handleSubmit((value)=>{
 }) 
 const submit=async (value:any)=>{
    const res=await userApi.login(value) as any
-   store.set('token',res.data.result.token)
+   store.set('token',{expire:100,token:res.data.result.token})
+   router.push('home')//验证成功跳转到主页
 }
 
 </script>

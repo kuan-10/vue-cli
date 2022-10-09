@@ -31,19 +31,27 @@
 </template>
 
 <script setup lang="ts">
-    import {ref} from 'vue'
+    import store from '@/util/store';
+    import  userApi from '@/api/user'
+import {ref} from 'vue'
  const username = ref('')
     const password = ref('')
-    const onSubmit = (values:any) => {
-      console.log('submit', values);
-    }
+    const onSubmit= (value: any)=>{
+       submit(value)
+    alert("验证成功！")
+}
+const submit=async (value:any)=>{
+   const res=await userApi.login(value) as any
+   store.set('token',{expire:100,token:res.data.result.token})
+}
+
     const validator=(val:any)=>{
         return /@/.test(val)===true?true:false
     }
     const passwordValidator=(val:any)=>{
         return /[0-9]/.test(val)===true?true:false
     }
-    console.log(passwordValidator(password))
+   
 </script>
 
 <style lang="scss" scoped>

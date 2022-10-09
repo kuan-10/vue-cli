@@ -15,9 +15,11 @@ function getChildRoute(route:RouteRecordRaw){
    childRoute.path=childRoute.path.substring(9)
    childRoute.name=childRoute.name as string
    childRoute.name=childRoute.name.substring(9)
+   childRoute.name=childRoute.name.split("/").pop()
    routes.push(childRoute)
   }
  })
+
  return routes;
 }
 function getRoute(file:string,module:any){

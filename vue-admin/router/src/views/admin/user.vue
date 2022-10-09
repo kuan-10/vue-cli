@@ -18,10 +18,7 @@ const onSubmit = (value: any) => {
     </script>
    <template>
 	<div>
-        <Form  @submit="onSubmit">
-        <Field name="email" :rules="validateEmail" label="帐号" :validate-on-input="true"/>
-        <ErrorMessage name="email"></ErrorMessage> -->
-        </Form>
+       
     </div>
 </template>
 <style lang="scss" scoped>
