@@ -5,7 +5,7 @@
     <p>{{usernameError}}</p>
     <input type="text" placeholder="请输入正确的密码" v-model="passwordValue"/>
     <p>{{passwordMessage}}</p>
-    <button>提交</button>
+    <button class="mx-12 pos">提交</button>
     </form>
     </div>
 </template>
@@ -42,7 +42,7 @@ const onSubmit=  handleSubmit((value)=>{
 const submit=async (value:any)=>{
    const res=await userApi.login(value) as any
    store.set('token',{expire:100,token:res.data.result.token})
-   router.push('home')//验证成功跳转到主页
+   router.push({name:'home'})//验证成功跳转到主页
 }
 
 </script>
@@ -59,5 +59,8 @@ button{
 }
 p{
     @apply text-red-700 text-xl font-bold
+}
+.pos{
+   margin-left: 70px;
 }
 </style>

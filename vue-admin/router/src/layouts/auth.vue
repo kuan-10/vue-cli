@@ -4,12 +4,16 @@
     </div>
 </template>
 
-<script  lang="ts">
-export default{
-    route: { meta: { auth:true } }
-  }
+<script  setup lang="ts">
+
 </script>
 
 <style lang="scss" scoped>
 
 </style>
+<script lang="ts">
+export default {
+    route: { meta : { auth:true}
+}
+}
+  </script>

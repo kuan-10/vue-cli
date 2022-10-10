@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="w-screen h-screen flex justify-center items-center">
         <van-form @submit="onSubmit">
-  <van-cell-group inset>
+  <van-cell-group inset class="border-2">
     <van-field
       v-model="username"
       name="用户名"

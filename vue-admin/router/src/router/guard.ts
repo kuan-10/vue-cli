@@ -9,6 +9,7 @@ class Guard{
     public run(){
         this.router.beforeEach((to,from)=>{
            //to.meta会匹配两个路由
+           console.log(to.meta)
             let token=store.get('token') as any
             console.log(token)
             if(this.isLogin(to,token)===false){

@@ -5,7 +5,7 @@ import layoutRoutes from "./autoload";
 import guard from "./guard";
 const router=createRouter({
     history:createWebHistory(),
-    routes:[...routes,...layoutRoutes]
+    routes:[...layoutRoutes,...routes]
 })
 export function setupRouter(app:App){
     guard(router)
