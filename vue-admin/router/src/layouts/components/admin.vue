@@ -6,7 +6,7 @@
      <span class="text-white">lk个人空间</span>
      </div>
      <dl>
-      <dt v-for="(item,index) of menu" :key=index class="text-white" @click="handler(item)">
+      <dt v-for="(item,index) of menu" :key=index class="text-white" @click="handler(item)"><!--循环数组，渲染dt，dd组件，并且加上点击事件-->
         <section class="flexStyle cursor-pointer" >
           <i :class="item.icon" class="text-3xl"></i>
           <span>{{item.title}}</span>
@@ -20,12 +20,12 @@
 
 <script setup lang="ts">
 import {ref} from 'vue'
-interface menuItem{
+interface menuItem{//定义菜单选项，里面有内容，图片，是否显示三项数据，对应渲染的dd菜单
   title?:string
   icon?:string
   active?:boolean
 }
-interface Menu extends menuItem{
+interface Menu extends menuItem{//对应渲染的dt菜单
   children?:menuItem[]
 }
 const menu=ref< Menu []>([
@@ -60,7 +60,7 @@ const menu=ref< Menu []>([
      }
      ] )
      const handler=(item:Menu)=>{
-      reset()
+      reset()//每次点击之前重置一下，重置的方法就是把整个menu数据所有的active都设置为假，然后点击之后将对应的active设置为真
         item.children?.forEach((item)=>{
             item.active=true
         })

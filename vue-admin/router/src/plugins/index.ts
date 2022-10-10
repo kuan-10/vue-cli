@@ -1,8 +1,10 @@
 import { App } from "vue";
+import { setupElementPlus } from "./elementui";
 import { setupTailwindCss } from "./tailwindcss";
 export function setupPlugins(app:App){
   autoRegisterComponent(app)
   setupTailwindCss()
+  setupElementPlus(app)
 }
 //自动注册全局组件
 function autoRegisterComponent(app:App){

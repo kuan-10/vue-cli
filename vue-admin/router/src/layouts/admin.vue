@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import navBar from '@/layouts/components/nav.vue'
+import admin from '@/layouts/components/admin.vue'
+import navbar from '@/layouts/components/navbar.vue'
 </script>
 <template>
   <div class="h-screen w-screen flex">
- <navBar></navBar>
+ <admin></admin><!--左侧管理菜单-->
   <div class="rightContainer">
+    <navbar></navbar>
       <router-view ></router-view>
 
       </div>
