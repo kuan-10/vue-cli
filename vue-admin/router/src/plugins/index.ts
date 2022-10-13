@@ -1,10 +1,12 @@
 import { App } from "vue";
 import { setupElementPlus } from "./elementui";
 import { setupTailwindCss } from "./tailwindcss";
+import { setupPinia } from "./pinia";
 export function setupPlugins(app:App){
-  autoRegisterComponent(app)
-  setupTailwindCss()
-  setupElementPlus(app)
+  autoRegisterComponent(app)//组件注册
+  setupTailwindCss()//tailwindcss安装与使用
+  setupElementPlus(app)//elementplus的安装与使用
+  setupPinia(app)//pinia的安装与使用
 }
 //自动注册全局组件
 function autoRegisterComponent(app:App){
