@@ -31,4 +31,7 @@ function getRoute(file:string,module:any){
         } as RouteRecordRaw
        return route
 }
-export default layoutRoutes;
+function getLayoutRoute(){
+    return layoutRoutes
+}
+export default getLayoutRoute;
