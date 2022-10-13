@@ -6,11 +6,19 @@
      <span class="text-white">lk个人空间</span>
      </div>
      <dl>
-      <dt v-for="(item,index) of menu" :key=index class="text-white" @click="handler(item)"><!--循环数组，渲染dt，dd组件，并且加上点击事件-->
+      <dt v-for="(item,index) of menu" :key=index class="text-white mb-3" @click="handler(item)"><!--循环数组，渲染dt，dd组件，并且加上点击事件-->
         <section class="flexStyle cursor-pointer" >
           <i :class="item.icon" class="text-3xl"></i>
           <span>{{item.title}}</span>
-          <i class="fa fa-arrow-down"></i>
+          <i :class="{'rotate-180':item.active}" class="fa fa-arrow-down"></i>
+        </section>
+        <dd v-for="(content,index) of item.children" class="buttonStyle" v-show="content.active">{{content.title}}</dd>
+      </dt>
+      <dt v-for="(item,index) of menu" :key=index class="text-white mb-3" @click="handler(item)"><!--循环数组，渲染dt，dd组件，并且加上点击事件-->
+        <section class="flexStyle cursor-pointer" >
+          <i :class="item.icon" class="text-3xl"></i>
+          <span>{{item.title}}</span>
+          <i :class="{'rotate-180':item.active}" class="fa fa-arrow-down"></i>
         </section>
         <dd v-for="(content,index) of item.children" class="buttonStyle" v-show="content.active">{{content.title}}</dd>
       </dt>
@@ -20,6 +28,9 @@
 
 <script setup lang="ts">
 import {ref} from 'vue'
+import {router} from '@/store/router'
+const rou=router()
+console.log(rou.get)
 interface menuItem{//定义菜单选项，里面有内容，图片，是否显示三项数据，对应渲染的dd菜单
   title?:string
   icon?:string
@@ -32,6 +43,7 @@ const menu=ref< Menu []>([
      {
        title:"错误页面",
        icon:"fa fa-digg",
+       active:true,
        children:[
         {
           title:"404页面",
@@ -61,12 +73,14 @@ const menu=ref< Menu []>([
      ] )
      const handler=(item:Menu)=>{
       reset()//每次点击之前重置一下，重置的方法就是把整个menu数据所有的active都设置为假，然后点击之后将对应的active设置为真
+      item.active=true
         item.children?.forEach((item)=>{
             item.active=true
         })
      }
      const reset=()=>{
        menu.value.forEach(item=>{
+        item.active=false
         item.children?.forEach(item=>{
            item.active=false
         })
@@ -78,7 +92,7 @@ const menu=ref< Menu []>([
 .leftContainer{
   @apply w-[200px] bg-gray-700 h-screen;
   .buttonStyle{
-  @apply bg-violet-700 my-5 mt-2 h-[45px] 
+  @apply bg-violet-700 my-5 mt-2 h-[45px]
   flex justify-start items-center rounded-md
    hover:bg-violet-500 duration-300 text-gray-200 text-sm pl-4 cursor-pointer
 }

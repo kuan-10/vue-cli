@@ -17,6 +17,6 @@
     "lib": ["ESNext", "DOM"],
     "skipLibCheck": true
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue","vite.config.ts", "vite/util.ts","vite/**/*.ts","mock/*.ts","types/**/*.d.ts","types/**/*.ts"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue","vite.config.ts", "vite/util.ts","vite/**/*.ts","mock/*.ts","types/**/*.d.ts","types/**/*.ts","src/**/**/*.vue"],
   // "references": [{ "path": "./tsconfig.node.json" }]
 }
