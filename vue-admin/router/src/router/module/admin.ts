@@ -6,8 +6,9 @@ export default{
     component:()=>import('@/layouts/admin.vue'),
     children:[
         {
-            name:'adminHom',
+            name:'adminHome',
             path:'adminHome',
+            meta:{auth:true},
             component:()=>import('@/views/admin/adminHome.vue')
         }
     ]

@@ -22,8 +22,8 @@ v.defineRule('required',required)
 v.defineRule('email',email)
 const {handleSubmit,errors}=v.useForm({
     initialValues:{
-        username:'向军',
-        password:''
+        username:'向军@163.com',
+        password:'向军@163.com'
     },//两个表单的初始值
     validationSchema:{
         username:v.yup.string().required().email(),
@@ -41,7 +41,7 @@ const onSubmit=  handleSubmit((value)=>{
 }) 
 const submit=async (value:any)=>{
    const res=await userApi.login(value) as any
-   store.set('token',{expire:100,token:res.data.result.token})
+   store.set('token',{expire:100,token:res.result.token})
    router.push({name:'home'})//验证成功跳转到主页
 }
 
