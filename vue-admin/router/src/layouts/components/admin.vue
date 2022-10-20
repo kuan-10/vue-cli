@@ -6,22 +6,15 @@
      <span class="text-white">lk个人空间</span>
      </div>
      <dl>
-      <dt v-for="(item,index) of menu" :key=index class="text-white mb-3" @click="handler(item)"><!--循环数组，渲染dt，dd组件，并且加上点击事件-->
+      <dt v-for="(route,index) of routerStore.routes" :key=index class="text-white mb-3" @click="handler(route)"><!--循环数组，渲染dt，dd组件，并且加上点击事件-->
         <section class="flexStyle cursor-pointer" >
-          <i :class="item.icon" class="text-3xl"></i>
-          <span>{{item.title}}</span>
-          <i :class="{'rotate-180':item.active}" class="fa fa-arrow-down"></i>
+          <i :class="route.meta.icon" class="text-3xl"></i>
+          <span>{{route.meta.title}}</span>
+          <i :class="{'rotate-180':route.meta.isClicked}" class="fa fa-arrow-down"></i>
         </section>
-        <dd v-for="(content,index) of item.children" class="buttonStyle" v-show="content.active">{{content.title}}</dd>
+        <dd v-for="(childRoute,index) of route.children" :key="index" class="buttonStyle" :class="{'active':true}" v-show="childRoute.meta?.isClicked" @click="handler(route,childRoute)">{{childRoute.meta?.title}}</dd>
       </dt>
-      <dt v-for="(item,index) of menu" :key=index class="text-white mb-3" @click="handler(item)"><!--循环数组，渲染dt，dd组件，并且加上点击事件-->
-        <section class="flexStyle cursor-pointer" >
-          <i :class="item.icon" class="text-3xl"></i>
-          <span>{{item.title}}</span>
-          <i :class="{'rotate-180':item.active}" class="fa fa-arrow-down"></i>
-        </section>
-        <dd v-for="(content,index) of item.children" class="buttonStyle" v-show="content.active">{{content.title}}</dd>
-      </dt>
+     
      </dl>
      </div>
 </template>
@@ -29,75 +22,88 @@
 <script setup lang="ts">
 import {ref} from 'vue'
 import {router} from '@/store/router'
-const rou=router()
-console.log(rou.get)
-interface menuItem{//定义菜单选项，里面有内容，图片，是否显示三项数据，对应渲染的dd菜单
-  title?:string
-  icon?:string
-  active?:boolean
-}
-interface Menu extends menuItem{//对应渲染的dt菜单
-  children?:menuItem[]
-}
-const menu=ref< Menu []>([
-     {
-       title:"错误页面",
-       icon:"fa fa-digg",
-       active:true,
-       children:[
-        {
-          title:"404页面",
-          active:true
-        },
-        {
-          title:"403页面",
-          active:true
-        },
-        {
-          title:"500页面",
-          active:true
-        }
-       ]
-     },{
-      title:"编辑器",
-      icon:"fa fa-free-code-camp",
-      children:[
-        {
-          title:"markdown编辑器"
-        },
-        {
-          title:"富文本编辑器"
-        }
-      ]
-     }
-     ] )
-     const handler=(item:Menu)=>{
+import { RouteMeta, RouteRecordNormalized, RouteRecordRaw, routerKey, useRouter } from 'vue-router';
+import { p } from '@antfu/utils';
+const routerStore=router()
+const routerService=useRouter()
+// interface menuItem{//定义菜单选项，里面有内容，图片，是否显示三项数据，对应渲染的dd菜单
+//   title?:string
+//   icon?:string
+//   active?:boolean
+// }
+// interface Menu extends menuItem{//对应渲染的dt菜单
+//   children?:menuItem[]
+// }
+// const menu=ref< Menu []>([
+//      {
+//        title:"错误页面",
+//        icon:"fa fa-digg",
+//        active:true,
+//        children:[
+//         {
+//           title:"404页面",
+//           active:true
+//         },
+//         {
+//           title:"403页面",
+//           active:true
+//         },
+//         {
+//           title:"500页面",
+//           active:true
+//         }
+//        ]
+//      },{
+//       title:"编辑器",
+//       icon:"fa fa-free-code-camp",
+//       children:[
+//         {
+//           title:"markdown编辑器"
+//         },
+//         {
+//           title:"富文本编辑器"
+//         }
+//       ]
+//      }
+//      ] )
+     const handler=(pRoute:RouteRecordNormalized,cRoute?:RouteRecordRaw)=>{
       reset()//每次点击之前重置一下，重置的方法就是把整个menu数据所有的active都设置为假，然后点击之后将对应的active设置为真
-      item.active=true
-        item.children?.forEach((item)=>{
-            item.active=true
-        })
+      pRoute.meta.isClicked=true
+      pRoute.children.forEach(item=>{
+        if(item.meta){
+          item.meta.isClicked=true
+        }
+      })
+       if(cRoute && cRoute.meta){
+         cRoute.meta.isClicked=true//pRoute是当前路由，cRoute是子路由
+         routerService.push(cRoute)//实现路由页面跳转
+       }
      }
      const reset=()=>{
-       menu.value.forEach(item=>{
-        item.active=false
-        item.children?.forEach(item=>{
-           item.active=false
+      routerStore.routes.forEach(route=>{
+        route.meta.isClicked=false
+        route.children.forEach(route=>{
+          if(route.meta){
+            route.meta.isClicked=false
+          }
         })
-       })
+      })
      }
 </script>
 
 <style lang="scss" scoped>
 .leftContainer{
-  @apply w-[200px] bg-gray-700 h-screen;
+  @apply w-[200px] bg-gray-700 min-h-screen;
   .buttonStyle{
-  @apply bg-violet-700 my-5 mt-2 h-[45px]
+  @apply bg-violet-500 my-5 mt-2 h-[45px]
   flex justify-start items-center rounded-md
-   hover:bg-violet-500 duration-300 text-gray-200 text-sm pl-4 cursor-pointer
+   hover:bg-violet-700 duration-300 text-gray-200 text-sm pl-4 cursor-pointer
 }
 }
 .flexStyle{
   @apply flex justify-between items-center
+}
+.active{
+  @apply bg-violet-700
 }
 </style>

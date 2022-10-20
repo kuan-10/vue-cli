@@ -6,7 +6,13 @@ declare module 'vue-router' {
       // is optional
       isAdmin?: boolean
       // must be declared by every route
-      requiresAuth: boolean
+      requiresAuth?: boolean
       auth?:boolean
+      guest?:boolean
+      permission?:string[]
+      show?:boolean
+      title?:string
+      active?:boolean
+      isClicked?:boolean//是否高亮
     }
   }

@@ -5,9 +5,15 @@ export default class Axios{
        this.instance=axios.create(config)
        this.interceptor()
    }
-   public async request<T, D=responseResult<T>>(config:AxiosRequestConfig){
-      const response= this.instance.request<T>(config)
-      return response
+   public async request<T, D=responseResult<T>>(config:AxiosRequestConfig):Promise<D>{
+     return new Promise(async (resolve,reject)=>{
+      try{
+        const response =await this.instance.request<D>(config)
+        resolve(response.data)
+      }catch(error){
+           reject(error)
+      }
+     })
     //   this.instance.request(<responseResult<T>>)
    }
    public interceptor(){

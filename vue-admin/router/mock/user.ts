@@ -2,14 +2,15 @@ import { Random } from 'mockjs'
 import { MockMethod } from 'vite-plugin-mock'
 export default [
   {
-    url: '/api/get',
+    url: '/api/info',
     method: 'get',
     response: () => {
       return {
         code: 0,
         data: {
           name: 'vben',
-          jak:"iuhkn"
+         age:2,
+         avatar:"ad",
         },
       }
     },
@@ -22,7 +23,8 @@ export default [
       code: 0,
       data: {
         name: 'vben',
-       jak:"iuhkn"
+         age:"adas",
+         avatar:"ad",
       },
     },
   },
