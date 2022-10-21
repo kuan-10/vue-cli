@@ -1,5 +1,6 @@
 export {}
 
+import { IMenu } from '#/menu'
 import 'vue-router'
 declare module 'vue-router' {
     interface RouteMeta {
@@ -10,9 +11,6 @@ declare module 'vue-router' {
       auth?:boolean
       guest?:boolean
       permission?:string[]
-      show?:boolean
-      title?:string
-      active?:boolean
-      isClicked?:boolean//是否高亮
+      menu?:IMenu
     }
   }

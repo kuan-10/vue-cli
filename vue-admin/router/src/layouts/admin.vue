@@ -2,6 +2,8 @@
 import admin from '@/layouts/components/admin.vue'
 import navbar from '@/layouts/components/navbar.vue'
 import historyLink from '@/layouts/components/historyLink.vue'
+import menuStore from '@/store/menuStore';
+menuStore().init()
 </script>
 <template>
   <div class="h-screen w-screen flex">
@@ -10,7 +12,11 @@ import historyLink from '@/layouts/components/historyLink.vue'
     <navbar></navbar>
     <history-link></history-link>
     <div class="p-5 m-3 bg-white">
-      <router-view ></router-view>
+      <router-view #default="{Component}">
+         <Transition enter-active-class="animate__animated animate__backInRight">
+          <component :is="Component" />
+         </Transition>
+      </router-view>
     </div>
       </div>
     </div>

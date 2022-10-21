@@ -6,13 +6,13 @@
      <span class="text-white">lk个人空间</span>
      </div>
      <dl>
-      <dt v-for="(route,index) of routerStore.routes" :key=index class="text-white mb-3" @click="handler(route)"><!--循环数组，渲染dt，dd组件，并且加上点击事件-->
+      <dt v-for="(item,index) of menu.menus" :key=index class="text-white mb-3" @click="handler(item)"><!--循环数组，渲染dt，dd组件，并且加上点击事件-->
         <section class="flexStyle cursor-pointer" >
-          <i :class="route.meta.icon" class="text-3xl"></i>
-          <span>{{route.meta.title}}</span>
-          <i :class="{'rotate-180':route.meta.isClicked}" class="fa fa-arrow-down"></i>
+          <i :class="item.icon" class="text-3xl"></i>
+          <span>{{item.title}}</span>
+          <i :class="{'rotate-180':item.isClicked}" class="fa fa-arrow-down"></i>
         </section>
-        <dd v-for="(childRoute,index) of route.children" :key="index" class="buttonStyle" :class="{'active':true}" v-show="childRoute.meta?.isClicked" @click="handler(route,childRoute)">{{childRoute.meta?.title}}</dd>
+        <dd v-for="(cmenu,index) of item.children" :key="index" class="buttonStyle" :class="{'active':true}" v-show="cmenu?.isClicked" @click="handler(item,cmenu)">{{cmenu.title}}</dd>
       </dt>
      
      </dl>
@@ -20,71 +20,33 @@
 </template>
 
 <script setup lang="ts">
-import {ref} from 'vue'
-import {router} from '@/store/router'
-import { RouteMeta, RouteRecordNormalized, RouteRecordRaw, routerKey, useRouter } from 'vue-router';
-import { p } from '@antfu/utils';
-const routerStore=router()
+import menuStore from '@/store/menuStore'
+import {useRouter } from 'vue-router';
+import { IMenu } from '#/menu';
+import router from '@/router';
+const menu=menuStore()
+console.log(menu.menus)
 const routerService=useRouter()
-// interface menuItem{//定义菜单选项，里面有内容，图片，是否显示三项数据，对应渲染的dd菜单
-//   title?:string
-//   icon?:string
-//   active?:boolean
-// }
-// interface Menu extends menuItem{//对应渲染的dt菜单
-//   children?:menuItem[]
-// }
-// const menu=ref< Menu []>([
-//      {
-//        title:"错误页面",
-//        icon:"fa fa-digg",
-//        active:true,
-//        children:[
-//         {
-//           title:"404页面",
-//           active:true
-//         },
-//         {
-//           title:"403页面",
-//           active:true
-//         },
-//         {
-//           title:"500页面",
-//           active:true
-//         }
-//        ]
-//      },{
-//       title:"编辑器",
-//       icon:"fa fa-free-code-camp",
-//       children:[
-//         {
-//           title:"markdown编辑器"
-//         },
-//         {
-//           title:"富文本编辑器"
-//         }
-//       ]
-//      }
-//      ] )
-     const handler=(pRoute:RouteRecordNormalized,cRoute?:RouteRecordRaw)=>{
+
+     const handler=(pmenu:IMenu,cmenu?:IMenu)=>{
       reset()//每次点击之前重置一下，重置的方法就是把整个menu数据所有的active都设置为假，然后点击之后将对应的active设置为真
-      pRoute.meta.isClicked=true
-      pRoute.children.forEach(item=>{
-        if(item.meta){
-          item.meta.isClicked=true
+      pmenu.isClicked=true
+      pmenu.children?.forEach(item=>{
+        if(item){
+          item.isClicked=true
+        }
+        if(cmenu){
+          router.push({name:cmenu.route})
         }
       })
-       if(cRoute && cRoute.meta){
-         cRoute.meta.isClicked=true//pRoute是当前路由，cRoute是子路由
-         routerService.push(cRoute)//实现路由页面跳转
-       }
+      
      }
      const reset=()=>{
-      routerStore.routes.forEach(route=>{
-        route.meta.isClicked=false
-        route.children.forEach(route=>{
-          if(route.meta){
-            route.meta.isClicked=false
+     menu.menus.forEach(menu=>{
+        menu.isClicked=false
+        menu.children?.forEach(cmenu=>{
+          if(cmenu){
+            cmenu.isClicked=false
           }
         })
       })
