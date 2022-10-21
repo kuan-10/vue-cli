@@ -4,9 +4,9 @@ import  autoloadModules  from './modules'
 let autoloadroutes=[] as RouteRecordRaw []
 
 if(0){
-    autoloadroutes=getLayoutRoute()
+    autoloadroutes=getLayoutRoute()//自动加载路由
 }else{
-    autoloadroutes=autoloadModules()
+    autoloadroutes=autoloadModules()//按模块加载路由
 }
 
 export default autoloadroutes

@@ -17,8 +17,8 @@ export default class Axios{
     //   this.instance.request(<responseResult<T>>)
    }
    public interceptor(){
-      this.requestInterceptor()
-     this.sendInterceptor()
+      this.requestInterceptor()//固定写法
+     this.sendInterceptor()//固定写法
    }
    public requestInterceptor(){
       this.instance.interceptors.request.use(function (config) {
