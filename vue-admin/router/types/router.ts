@@ -1,15 +1,11 @@
 import 'vue-router'
-import { bool } from 'yup'
+import { IMenu } from './menu'
 
 declare module 'vue-router' {
     interface RouteMeta {
         auth?:boolean
         guest?:boolean
         //路由是否显示
-        show?:boolean
-        //菜单的标题
-        title?:string
-        //路由图标
-        icon?:string
+        menu?:IMenu
     }
 }
