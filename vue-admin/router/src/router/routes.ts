@@ -16,6 +16,11 @@ const routes=[
     name:'register',
     component:()=>import('@/views/auth/register.vue'),
 },
+{
+    path:'/:any(.*)',
+    name:'Not Found',
+    component:()=>import('@/views/errors/404.vue')
+}
 ] as RouteRecordRaw []
  
 export default routes;

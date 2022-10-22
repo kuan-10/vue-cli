@@ -10,7 +10,7 @@ import store from '@/util/store';
 </script>
 
 <template>
- <div class="outline">
+ <div class="outline border bg-white">
         <div class="text-gray-600 ml-2 cursor-pointer text-center border-bottom">
           <a class="fa fa-linode -translate-x-2 translate-y-0.5 text-xl"></a>
           <span>网站首页</span>
@@ -31,7 +31,6 @@ import store from '@/util/store';
   position: absolute;
   top:45px;
   left:-10px;
-  border: 0.5px solid gray;
   width:120px;
 
 }</style>

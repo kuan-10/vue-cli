@@ -13,6 +13,7 @@ declare module '@vue/runtime-core' {
     LoginauthButton: typeof import('./src/components/form/loginauthButton.vue')['default']
     LoginButton: typeof import('./src/components/form/loginButton.vue')['default']
     Navmenu: typeof import('./src/components/admin/navmenu.vue')['default']
+    Notification: typeof import('./src/components/messagtable/notification.vue')['default']
     Password: typeof import('./src/components/form/password.vue')['default']
     PasswordAuthButton: typeof import('./src/components/form/passwordAuthButton.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
