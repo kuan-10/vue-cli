@@ -1,6 +1,6 @@
 import 'vue-router'
 import { IMenu } from './menu'
-
+//定义路由元信息类型
 declare module 'vue-router' {
     interface RouteMeta {
         auth?:boolean

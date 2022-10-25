@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@toast-ui/editor": "^3.2.1",
     "@vee-validate/i18n": "^4.6.10",
     "@vee-validate/rules": "^4.6.10",
     "animate.css": "^4.1.1",

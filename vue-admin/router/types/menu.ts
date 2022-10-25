@@ -1,3 +1,4 @@
+//路由元信息中的menu类型
 interface Menu{
     title?:string
     icon?:string
