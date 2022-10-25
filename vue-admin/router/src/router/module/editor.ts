@@ -12,7 +12,7 @@ export default{
             name: 'editor.base',
             path: 'base',
             meta: { menu: { show: true, title: "富文本编辑器" }, active: true },
-            component: () => import('@/views/editor/base.vue'),
+            component: () => import('@/views/editor/wangeditor.vue'),
         },
         {
             name: 'editor.markdown',

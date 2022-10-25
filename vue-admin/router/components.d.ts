@@ -7,7 +7,6 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    'auth)': typeof import('./src/components/form/loginButton(with auth).vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     Input: typeof import('./src/components/form/input.vue')['default']
     LoginauthButton: typeof import('./src/components/form/loginauthButton.vue')['default']
@@ -23,5 +22,6 @@ declare module '@vue/runtime-core' {
     VanCellGroup: typeof import('vant/es')['CellGroup']
     VanField: typeof import('vant/es')['Field']
     VanForm: typeof import('vant/es')['Form']
+    Wangeditor: typeof import('./src/components/editor/wangeditor.vue')['default']
   }
 }

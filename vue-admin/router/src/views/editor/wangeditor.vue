@@ -1,9 +1,9 @@
 <script lang="ts" setup>
- 
+ import wangeditor from '@/components/editor/wangeditor.vue'
 </script>
 
 <template>
-  <div class="-container">editor.base</div>
+ <wangeditor></wangeditor>
 </template>
 
 <style lang="scss" scoped></style>

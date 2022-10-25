@@ -1,17 +1,16 @@
 import { uploadImage } from "@/api/uploadApi";
-import { http } from "@/plugins/axios";
-
+import Editor, { EditorType } from '@toast-ui/editor'
 export default class{
     editor
     constructor(el:string,height:string,initialValue:string,initialType='markdown'){
-        this. editor = new toastui.Editor({
+        this. editor = new Editor({
             //Editor的默认参数
-            el: document.querySelector(el),
+            el: document.querySelector(el)!,
             previewStyle: 'vertical',
-            initialEditType:initialType,
+            initialEditType:initialType as EditorType | undefined,
             height:height,
             initialValue: initialValue,
-            toolbarItems:this.toolbarItems()//自定义工具类
+            toolbarItems:this.toolbarItems() as []//自定义工具类
           });
        this.ImageHook()//上传图片接口
         
@@ -39,7 +38,7 @@ export default class{
             [{
               el: this.createButton(),
               command: 'fullscreen',//按钮的操作
-              tooltip: 'Custom Bold'//按钮的提示
+              tooltip: 'fullscreen'//按钮的提示
             }
         ,{
             el:this.createSmallScreenButton(),
@@ -56,6 +55,8 @@ export default class{
         button.style.margin='0'
         button.addEventListener('click',()=>{
        this.editor.setHeight('100vh')
+       const ui=document.querySelector('.toastui-editor-defaultUI') as HTMLDivElement
+       ui.classList.toggle('fullscreen')
         })
         return button 
     }

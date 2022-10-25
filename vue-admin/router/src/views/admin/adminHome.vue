@@ -33,7 +33,7 @@
 <script setup lang="ts">
 import { nextTick } from 'vue';
 import {echart1,echart2} from './echarts'
-
+import * as echarts from 'echarts'
 interface cardItem{
     title:string//标题
     price:number//总价格
@@ -78,10 +78,10 @@ const data:cardItem[]=[
 ]
 nextTick(()=>{
     var chartDom = document.getElementById('echart1')!;
-var myChart = echarts.init(chartDom);
+var myChart = echarts.init(chartDom as HTMLDivElement);
 myChart.setOption(echart1)
 var chartDom = document.getElementById('echart2')!;
-var myChart = echarts.init(chartDom);
+var myChart = echarts.init(chartDom as HTMLDivElement);
 myChart.setOption(echart2)
 })
 </script>

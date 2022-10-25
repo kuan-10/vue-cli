@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { nextTick } from 'process';
 import ToastUi from './toastui'
+import Editor from '@toast-ui/editor'
 //定义传过来的markdown编辑器接口
 interface Props{
     initialModuleValue?:string//选中的元素名字，默认为#editor
@@ -37,5 +38,21 @@ nextTick(()=>{
 </template>
 
 <style lang="scss" scoped>
-@import 'https://uicdn.toast.com/editor/latest/toastui-editor.min.css' 
+@import 'https://uicdn.toast.com/editor/latest/toastui-editor.min.css'; 
+#editor{
+    @apply bg-white;
+    .toast-editor-mode-switch{
+        display: none !important;
+    }
+    .fullscreen{
+ position: fixed;
+ left: 0;
+ right: 0;
+ top:0;
+ bottom:0;
+ z-index:999;
+ background:#fff;
+}
+}
+
 </style>
